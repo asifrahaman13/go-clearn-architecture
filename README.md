@@ -9,18 +9,29 @@ The project follows a typical Go project structure:
 
 ```bash
 .
+├── config
+│   └── config.go
+├── pkg
+│   └── pkg.go
 ├── src
 │   ├── cmd
 │   │   └── main.go
 │   ├── internal
 │   │   ├── application
 │   │   │   └── user_service.go
+│   │   ├── constants
+│   │   │   └── constants.go
 │   │   ├── domain
 │   │   │   └── user.go
+│   │   ├── helper
+│   │   │   └── helper.go
 │   │   ├── infrastructure
 │   │   │   └── user_repository.go
 │   │   ├── interfaces
-│   │   │   └── user_handler.go
+│   │   │   ├── route
+│   │   │   └── routes.go
+│   │   ├── middleware
+│   │   │   └── middleware.go
 │   │   └── pkg
 │   └── test
 ├── Dockerfile
