@@ -6,20 +6,21 @@ import (
     "net/http"
     "github.com/asifrahaman13/clean/src/internal/application"
     "github.com/asifrahaman13/clean/src/internal/infrastructure"
-	"github.com/asifrahaman13/clean/src/internal/interfaces"
-
+    "github.com/asifrahaman13/clean/src/internal/interfaces/route"
 )
 
 func main() {
     userRepository := infrastructure.NewUserRepository()
     userService := application.NewUserService(userRepository)
-    userHandler := interfaces.NewUserHandler(userService)
+    routes := route.SetupRoutes(userService)
 
     // Create a new HTTP server mux
     mux := http.NewServeMux()
 
-    // Register the GetUserByID handler
-    mux.HandleFunc("/user/", userHandler.GetUserByID)
+    // Register the routes
+    for _, route := range routes.Routes {
+        mux.HandleFunc(route.Path, route.Handler)
+    }
 
     // Start the HTTP server on port 8080
     server := &http.Server{

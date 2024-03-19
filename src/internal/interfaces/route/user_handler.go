@@ -1,5 +1,5 @@
 // internal/interfaces/http/user_handler.go
-package interfaces
+package route
 
 import (
     "fmt"
